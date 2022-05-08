@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tv_coinname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="BTC"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_coinvol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="VOL"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_coinname"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_coinmarjin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="5x"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/yellow"
+        app:layout_constraintTop_toTopOf="@id/tv_coinname"
+        app:layout_constraintStart_toEndOf="@+id/tv_coinname"
+        app:layout_constraintBottom_toBottomOf="@id/tv_coinname"/>
+
+    <TextView
+        android:id="@+id/tv_coinprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="100000$"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_coinchange"/>
+
+    <TextView
+        android:id="@+id/tv_coinchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="%50"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

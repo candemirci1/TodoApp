@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".coin.ThirdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".animal.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".todo.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -10,12 +10,13 @@
         android:id="@+id/tv_todo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="TODO"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cb_todo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cb_todo"/>
+        tools:text="TODO" />
 
     <CheckBox
         android:id="@+id/cb_todo"

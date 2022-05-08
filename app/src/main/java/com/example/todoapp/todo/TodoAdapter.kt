@@ -1,9 +1,10 @@
-package com.example.todoapp
+package com.example.todoapp.todo
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todoapp.R
 import kotlinx.android.synthetic.main.item_todo.view.*
 
 
@@ -23,7 +24,7 @@ class TodoAdapter(
 
     }
 
-    fun addTodo(todo: Todo ) {
+    fun addTodo(todo: Todo) {
         todos.add(todo)
         notifyItemInserted(todos.size-1)
     }

@@ -1,7 +1,10 @@
-package com.example.todoapp
+package com.example.todoapp.todo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.todoapp.R
+import com.example.todoapp.animal.SecondActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         }
         btn_delete.setOnClickListener {
             todoAdapter.deleteDoneTodos()
+        }
+
+        btn_second.setOnClickListener {
+            Intent(this, SecondActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 }
