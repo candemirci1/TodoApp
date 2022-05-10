@@ -4,32 +4,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todoapp.R
-import kotlinx.android.synthetic.main.item_animal.view.*
+import com.example.todoapp.databinding.ItemAnimalBinding
+
+
 
 class AnimalAdapter(
     private val animals: MutableList<Animal>
 ) : RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
 
-    class AnimalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class AnimalViewHolder(val binding: ItemAnimalBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolder {
-        return AnimalViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_animal, parent, false
-            )
-        )
+        val binding = ItemAnimalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AnimalViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AnimalViewHolder, position: Int) {
         var curAnimal = animals[position]
-        holder.itemView.apply {
-            tv_animal_name.text = curAnimal.name
-            tv_animal_leg.text = curAnimal.legCount.toString()
+        holder.binding.apply {
+            tvAnimalName.text = curAnimal.name
+            tvAnimalLeg.text = curAnimal.legCount.toString()
             if(curAnimal.isFavorite) {
-                iv_star.visibility = View.VISIBLE
+                ivStar.visibility = View.VISIBLE
             } else {
-                iv_star.visibility = View.GONE
+                ivStar.visibility = View.GONE
             }
         }
     }

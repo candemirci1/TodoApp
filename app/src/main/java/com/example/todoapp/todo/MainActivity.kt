@@ -1,42 +1,58 @@
 package com.example.todoapp.todo
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.todoapp.R
 import com.example.todoapp.animal.SecondActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.todoapp.databinding.ActivityMainBinding
+import com.google.gson.Gson
+
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var todoAdapter: TodoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val todos = mutableListOf<Todo>(
-            Todo("call my mom"),
-            Todo("Go to school"),
-            Todo("Listen mucis", true)
-        )
+        val gson = Gson()
+        val sharedPreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        val todos = mutableListOf<Todo>()
+        val savedTodos = gson.fromJson(sharedPreferences.getString("todos", null), Todos::class.java)
+        if (savedTodos != null) {
+            todos.addAll(savedTodos.items)
+        }
 
         todoAdapter = TodoAdapter(todos)
-        rv_todos.adapter = todoAdapter
+        binding.rvTodos.adapter = todoAdapter
 
-        btn_add.setOnClickListener {
-            val todoTitle = et_newtodo.text.toString()
+
+
+        binding.btnAdd.setOnClickListener {
+            val todoTitle = binding.etNewtodo.text.toString()
             if(todoTitle.isNotEmpty()) {
                 val todo = Todo(todoTitle)
                 todoAdapter.addTodo(todo)
-                et_newtodo.text.clear()
+                editor.apply {
+                    putString("todos", gson.toJson(Todos(todos)))
+                    apply()
+                }
+                binding.etNewtodo.text.clear()
             }
         }
-        btn_delete.setOnClickListener {
+        binding.btnDelete.setOnClickListener {
             todoAdapter.deleteDoneTodos()
         }
 
-        btn_second.setOnClickListener {
+        binding.btnSecond.setOnClickListener {
             Intent(this, SecondActivity::class.java).also {
                 startActivity(it)
             }

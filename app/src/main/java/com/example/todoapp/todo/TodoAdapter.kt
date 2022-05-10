@@ -1,27 +1,21 @@
 package com.example.todoapp.todo
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todoapp.R
-import kotlinx.android.synthetic.main.item_todo.view.*
+import com.example.todoapp.databinding.ItemTodoBinding
+
 
 
 class TodoAdapter(
     private val todos: MutableList<Todo>
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
-    class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class TodoViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-
-        return TodoViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_todo, parent, false
-            )
-        )
-
+        val binding = ItemTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TodoViewHolder(binding)
     }
 
     fun addTodo(todo: Todo) {
@@ -38,9 +32,9 @@ class TodoAdapter(
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         var curTodo = todos[position]
-        holder.itemView.apply {
-            tv_todo.text = curTodo.title
-            cb_todo.isChecked = curTodo.isChecked
+        holder.binding.apply {
+            tvTodo.text = curTodo.title
+            cbTodo.isChecked = curTodo.isChecked
         }
     }
 
